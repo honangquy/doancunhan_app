@@ -1,0 +1,1241 @@
+{
+  "info": {
+    "_postman_id": "huit-conferences-api",
+    "name": "HUIT Conferences API",
+    "description": "Complete API collection for HUIT Conferences management system - Flutter Development",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Updated\",\n  \"email\": \"john.updated@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "profile"]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\",\n  \"new_password\": \"newpassword123\",\n  \"new_password_confirmation\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/change-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/refresh",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Conferences",
+      "item": [
+        {
+          "name": "List Conferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conferences?page=1&per_page=20&status=ACTIVE",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "key": "status",
+                  "value": "ACTIVE"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Conference Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Conference Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1/statistics",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1", "statistics"]
+            }
+          }
+        },
+        {
+          "name": "My Conferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-conferences",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-conferences"]
+            }
+          }
+        },
+        {
+          "name": "Create Conference",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"International Conference 2025\",\n  \"description\": \"Annual conference on technology\",\n  \"start_date\": \"2025-12-01\",\n  \"end_date\": \"2025-12-05\",\n  \"location\": \"Ho Chi Minh City\",\n  \"submission_deadline\": \"2025-10-31\",\n  \"review_deadline\": \"2025-11-30\",\n  \"max_participants\": 500,\n  \"reviewers_per_paper\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conferences",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences"]
+            }
+          }
+        },
+        {
+          "name": "Update Conference",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Conference Title\",\n  \"description\": \"Updated description\",\n  \"max_participants\": 600\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Conference",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Conference Requests",
+      "item": [
+        {
+          "name": "List Conference Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests?status=PENDING",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Conference Request Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create Conference Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"New Conference Proposal\",\n  \"description\": \"Conference description\",\n  \"field\": \"Technology\",\n  \"expected_date\": \"2025-12-01\",\n  \"location\": \"Hanoi\",\n  \"objective\": \"To bring together researchers\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests"]
+            }
+          }
+        },
+        {
+          "name": "Approve Conference Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approval_note\": \"Approved by admin\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests/1/approve",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests", "1", "approve"]
+            }
+          }
+        },
+        {
+          "name": "Reject Conference Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"approval_note\": \"Rejected due to budget constraints\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests/1/reject",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests", "1", "reject"]
+            }
+          }
+        },
+        {
+          "name": "Conference Request Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conference-requests/statistics",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conference-requests", "statistics"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Papers",
+      "item": [
+        {
+          "name": "List Papers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/papers?conference_id=1&page=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers"],
+              "query": [
+                {
+                  "key": "conference_id",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Paper Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/papers/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Submit Paper",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "conference_id",
+                  "value": "1"
+                },
+                {
+                  "key": "title",
+                  "value": "Research Paper Title"
+                },
+                {
+                  "key": "abstract",
+                  "value": "Paper abstract here"
+                },
+                {
+                  "key": "keywords",
+                  "value": "keyword1,keyword2,keyword3"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/papers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers"]
+            }
+          }
+        },
+        {
+          "name": "Update Paper",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Paper Title\",\n  \"abstract\": \"Updated abstract\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/papers/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Download Paper",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/papers/1/download",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1", "download"]
+            }
+          }
+        },
+        {
+          "name": "My Papers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-papers",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-papers"]
+            }
+          }
+        },
+        {
+          "name": "Delete Paper",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/papers/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "List Reviews for Paper",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/papers/1/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "Submit Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignment_id\": 1,\n  \"paper_id\": 1,\n  \"score\": 8,\n  \"recommendation\": \"ACCEPT\",\n  \"comment\": \"Well-written paper\",\n  \"strengths\": \"Clear methodology\",\n  \"weaknesses\": \"Limited scope\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews"]
+            }
+          }
+        },
+        {
+          "name": "Get Review Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/reviews/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Review",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"score\": 7,\n  \"recommendation\": \"ACCEPT\",\n  \"comment\": \"Updated comment\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews", "1"]
+            }
+          }
+        },
+        {
+          "name": "Finalize Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/reviews/1/finalize",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reviews", "1", "finalize"]
+            }
+          }
+        },
+        {
+          "name": "My Reviews",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-reviews",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-reviews"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assignments",
+      "item": [
+        {
+          "name": "List Assignments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assignments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assignments"]
+            }
+          }
+        },
+        {
+          "name": "Create Assignment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paper_id\": 1,\n  \"reviewer_id\": 2,\n  \"deadline\": \"2025-11-30\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/assignments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assignments"]
+            }
+          }
+        },
+        {
+          "name": "My Assignments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-assignments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-assignments"]
+            }
+          }
+        },
+        {
+          "name": "Accept Assignment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assignments/1/accept",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assignments", "1", "accept"]
+            }
+          }
+        },
+        {
+          "name": "Delete Assignment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assignments/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assignments", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bidding",
+      "item": [
+        {
+          "name": "My Biddings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-biddings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-biddings"]
+            }
+          }
+        },
+        {
+          "name": "Submit Bid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bid_score\": 9\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/papers/1/bid",
+              "host": ["{{base_url}}"],
+              "path": ["api", "papers", "1", "bid"]
+            }
+          }
+        },
+        {
+          "name": "Update Bid",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bid_score\": 8\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/biddings/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "biddings", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "COI (Conflict of Interest)",
+      "item": [
+        {
+          "name": "List COIs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/coi",
+              "host": ["{{base_url}}"],
+              "path": ["api", "coi"]
+            }
+          }
+        },
+        {
+          "name": "Declare COI",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paper_id\": 1,\n  \"coi_reason\": \"Co-author\",\n  \"severity_level\": \"HIGH\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/coi/declare",
+              "host": ["{{base_url}}"],
+              "path": ["api", "coi", "declare"]
+            }
+          }
+        },
+        {
+          "name": "Detect COI",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paper_id\": 1,\n  \"reviewer_id\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/coi/detect",
+              "host": ["{{base_url}}"],
+              "path": ["api", "coi", "detect"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tracks",
+      "item": [
+        {
+          "name": "Get Conference Tracks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1/tracks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1", "tracks"]
+            }
+          }
+        },
+        {
+          "name": "Create Track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"AI & Machine Learning\",\n  \"description\": \"Track for AI and ML papers\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/conferences/1/tracks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "conferences", "1", "tracks"]
+            }
+          }
+        },
+        {
+          "name": "Get Track Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tracks/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tracks", "1"]
+            }
+          }
+        },
+        {
+          "name": "My Tracks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/my-tracks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "my-tracks"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "System Overview",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/reports/overview",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "reports", "overview"]
+            }
+          }
+        },
+        {
+          "name": "Conference Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/reports/conference/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "reports", "conference", "1"]
+            }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/admin/users?page=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Updated Name\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/users/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Manage User Roles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\"AUTHOR\", \"REVIEWER\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/users/1/roles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "users", "1", "roles"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Utilities",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/health",
+              "host": ["{{base_url}}"],
+              "path": ["api", "health"]
+            }
+          }
+        },
+        {
+          "name": "Get Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications"]
+            }
+          }
+        },
+        {
+          "name": "Mark All as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/read-all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "read-all"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "info": {
+    "name": "Reviewer Mobile App API",
+    "description": "API collection for Reviewer Mobile App - Conference Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Dashboard",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/dashboard",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "dashboard"]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Assignments",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/assignments",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "assignments"]
+        }
+      }
+    },
+    {
+      "name": "3. Get Assignments (Filter by Status)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/assignments?status=PENDING",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "assignments"],
+          "query": [
+            {
+              "key": "status",
+              "value": "PENDING"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Get Assignment Detail",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/assignments/20",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "assignments", "20"]
+        }
+      }
+    },
+    {
+      "name": "5. Accept Assignment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/assignments/20/accept",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "assignments", "20", "accept"]
+        }
+      }
+    },
+    {
+      "name": "6. Decline Assignment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"reason\": \"I have a conflict of interest with the author\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/assignments/20/decline",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "assignments", "20", "decline"]
+        }
+      }
+    },
+    {
+      "name": "7. Get All Reviews",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/reviews",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "reviews"]
+        }
+      }
+    },
+    {
+      "name": "8. Get Review Detail",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/reviews/15",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "reviews", "15"]
+        }
+      }
+    },
+    {
+      "name": "9. Submit Review (Final)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "assignment_id",
+              "value": "20",
+              "type": "text"
+            },
+            {
+              "key": "score_novelty",
+              "value": "8",
+              "type": "text"
+            },
+            {
+              "key": "score_relevance",
+              "value": "7",
+              "type": "text"
+            },
+            {
+              "key": "score_technical_quality",
+              "value": "8",
+              "type": "text"
+            },
+            {
+              "key": "score_presentation",
+              "value": "7",
+              "type": "text"
+            },
+            {
+              "key": "score_references",
+              "value": "8",
+              "type": "text"
+            },
+            {
+              "key": "detailed_comments",
+              "value": "This paper presents a novel approach to AI-powered mobile app development. The methodology is sound and the results are promising. However, the paper could benefit from more detailed discussion of limitations and future work.",
+              "type": "text"
+            },
+            {
+              "key": "recommendation_code",
+              "value": "ACCEPT",
+              "type": "text"
+            },
+            {
+              "key": "is_draft",
+              "value": "false",
+              "type": "text"
+            },
+            {
+              "key": "review_file",
+              "type": "file",
+              "src": "/path/to/review.pdf"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/reviews",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "reviews"]
+        }
+      }
+    },
+    {
+      "name": "10. Save Review Draft",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "assignment_id",
+              "value": "20",
+              "type": "text"
+            },
+            {
+              "key": "score_novelty",
+              "value": "8",
+              "type": "text"
+            },
+            {
+              "key": "score_relevance",
+              "value": "7",
+              "type": "text"
+            },
+            {
+              "key": "is_draft",
+              "value": "true",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/mobile/reviewer/reviews",
+          "host": ["{{base_url}}"],
+          "path": ["api", "mobile", "reviewer", "reviews"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ]
+}

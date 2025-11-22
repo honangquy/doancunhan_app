@@ -1,0 +1,3559 @@
+[
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/documentation",
+        "name": "l5-swagger.default.api",
+        "action": "\\L5Swagger\\Http\\Controllers\\SwaggerController@api",
+        "middleware": [
+            "L5Swagger\\Http\\Middleware\\Config"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "docs",
+        "name": "l5-swagger.default.docs",
+        "action": "\\L5Swagger\\Http\\Controllers\\SwaggerController@docs",
+        "middleware": [
+            "L5Swagger\\Http\\Middleware\\Config"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "docs/asset/{asset}",
+        "name": "l5-swagger.default.asset",
+        "action": "\\L5Swagger\\Http\\Controllers\\SwaggerAssetController@index",
+        "middleware": [
+            "L5Swagger\\Http\\Middleware\\Config"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/oauth2-callback",
+        "name": "l5-swagger.default.oauth2_callback",
+        "action": "\\L5Swagger\\Http\\Controllers\\SwaggerController@oauth2Callback",
+        "middleware": [
+            "L5Swagger\\Http\\Middleware\\Config"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "sanctum/csrf-cookie",
+        "name": "sanctum.csrf-cookie",
+        "action": "Laravel\\Sanctum\\Http\\Controllers\\CsrfCookieController@show",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "_ignition/health-check",
+        "name": "ignition.healthCheck",
+        "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\HealthCheckController",
+        "middleware": [
+            "Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "_ignition/execute-solution",
+        "name": "ignition.executeSolution",
+        "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\ExecuteSolutionController",
+        "middleware": [
+            "Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "_ignition/update-config",
+        "name": "ignition.updateConfig",
+        "action": "Spatie\\LaravelIgnition\\Http\\Controllers\\UpdateConfigController",
+        "middleware": [
+            "Spatie\\LaravelIgnition\\Http\\Middleware\\RunnableSolutionsEnabled"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/auth/register",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@register",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/auth/login",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@login",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conferences",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@index",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conferences/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@show",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conferences/{id}/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@statistics",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/facilities",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/auth/profile",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@profile",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/auth/profile",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@updateProfile",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/auth/change-password",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@changePassword",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/auth/logout",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@logout",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/auth/refresh",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AuthController@refresh",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conferences",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/conferences/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@update",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/conferences/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-conferences",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceController@myConferences",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conferences/{conference_id}/tracks",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conferences/{conference_id}/tracks",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/tracks/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/tracks/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@update",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/tracks/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/tracks/{id}/papers",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@papers",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-tracks",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\TrackController@myTracks",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conference-requests",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conference-requests",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conference-requests/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conference-requests/{id}/approve",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@approve",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conference-requests/{id}/reject",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@reject",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/conference-requests/{id}/cancel",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@cancel",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/conference-requests/{id}/configure",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@configure",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conference-requests/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ConferenceRequestController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/papers",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/papers/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@update",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/papers/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{id}/download",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@download",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-papers",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperController@myPapers",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/versions",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperVersionController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/papers/{paper_id}/versions",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperVersionController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/versions/{version_no}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperVersionController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/versions/{version_no}/download",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperVersionController@download",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/versions/compare",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\PaperVersionController@compare",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/biddings",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/papers/{paper_id}/bid",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-biddings",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@myBiddings",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/biddings/{paper_id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@update",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/biddings/{paper_id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/bidding/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\BiddingController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/reviews",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/reviews",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/reviews/{review_id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/reviews/{review_id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@update",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-reviews",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@myReviews",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/reviews/{review_id}/finalize",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@finalize",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/review/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\ReviewController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/coi/declare",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@declare",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/coi",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@paperCOIs",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/coi",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/coi/detect",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@detect",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/coi/{coi_id}/resolve",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@resolve",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/coi/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\COIController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/assignments",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@store",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/assignments/auto-assign",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@autoAssign",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/assignments/{assignment_id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/papers/{paper_id}/assignments",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@paperAssignments",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/my-assignments",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@myAssignments",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/assignments/{assignment_id}/accept",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@acceptAssignment",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/assignment/statistics",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AssignmentController@statistics",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/admin/users",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AdminController@listUsers",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "api/admin/users/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AdminController@updateUser",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/admin/users/{id}/roles",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AdminController@manageRoles",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/admin/reports/conference/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AdminController@conferenceReport",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/admin/reports/overview",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\AdminController@systemOverview",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/notifications",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@index",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/notifications/unread",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@unreadCount",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/notifications/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@show",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PATCH"
+        ],
+        "uri": "api/notifications/{id}/read",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@markAsRead",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "PATCH"
+        ],
+        "uri": "api/notifications/read-all",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@markAllAsRead",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "api/notifications/{id}",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Api\\NotificationController@destroy",
+        "middleware": [
+            "api",
+            "auth:api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/health",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/test-conference-submit",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "api/submit-conference-request",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/test/stats",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/test/papers",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "api"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "/",
+        "name": "home",
+        "action": "App\\Http\\Controllers\\HomeController@index",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/search-conferences",
+        "name": "api.search.conferences",
+        "action": "App\\Http\\Controllers\\HomeController@searchConferences",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "api/conference-counts",
+        "name": "api.conference.counts",
+        "action": "App\\Http\\Controllers\\HomeController@getConferenceCounts",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/notifications",
+        "name": "reviewer.notifications.index",
+        "action": "App\\Http\\Controllers\\Reviewer\\NotificationController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "PATCH"
+        ],
+        "uri": "reviewer/notifications/{id}/read",
+        "name": "reviewer.notifications.read",
+        "action": "App\\Http\\Controllers\\Reviewer\\NotificationController@markAsRead",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/notifications/unread-count",
+        "name": "reviewer.notifications.unread_count",
+        "action": "App\\Http\\Controllers\\Reviewer\\NotificationController@getUnreadCount",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "PATCH"
+        ],
+        "uri": "reviewer/notifications/mark-all-read",
+        "name": "reviewer.notifications.mark_all_read",
+        "action": "App\\Http\\Controllers\\Reviewer\\NotificationController@markAllAsRead",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/assignments",
+        "name": "reviewer.assignments.index",
+        "action": "App\\Http\\Controllers\\Reviewer\\AssignmentController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/assignments/{id}",
+        "name": "reviewer.assignments.show",
+        "action": "App\\Http\\Controllers\\Reviewer\\AssignmentController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/animations-demo",
+        "name": "reviewer.animations.demo",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/assignments/{id}/accept",
+        "name": "reviewer.assignments.accept",
+        "action": "App\\Http\\Controllers\\Reviewer\\AssignmentController@accept",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/assignments/{id}/decline",
+        "name": "reviewer.assignments.decline",
+        "action": "App\\Http\\Controllers\\Reviewer\\AssignmentController@decline",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/assignments/stats",
+        "name": "reviewer.assignments.stats",
+        "action": "App\\Http\\Controllers\\Reviewer\\AssignmentController@getStats",
+        "middleware": [
+            "web",
+            "auth",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conferences",
+        "name": "conferences.index",
+        "action": "App\\Http\\Controllers\\ConferenceController@index",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conferences/{id}",
+        "name": "conferences.show",
+        "action": "App\\Http\\Controllers\\ConferenceController@show",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conferences/{id}/cfp",
+        "name": "conferences.cfp",
+        "action": "App\\Http\\Controllers\\ConferenceController@showCFP",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/invitation/{token}",
+        "name": "reviewer.invitation.accept",
+        "action": "App\\Http\\Controllers\\Reviewer\\InvitationController@acceptInvitation",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/join",
+        "name": "reviewer.join.form",
+        "action": "App\\Http\\Controllers\\Reviewer\\InvitationController@showJoinForm",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/join",
+        "name": "reviewer.join.submit",
+        "action": "App\\Http\\Controllers\\Reviewer\\InvitationController@submitJoinForm",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "conferences/{id}/join-request",
+        "name": "conferences.join-request",
+        "action": "App\\Http\\Controllers\\ConferenceController@submitJoinRequest",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conferences/{id}/my-requests",
+        "name": "conferences.my-requests",
+        "action": "App\\Http\\Controllers\\ConferenceController@getUserJoinRequests",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "my-join-requests",
+        "name": "join-requests.index",
+        "action": "App\\Http\\Controllers\\ConferenceController@myJoinRequests",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "news",
+        "name": "news.index",
+        "action": "App\\Http\\Controllers\\HomeController@news",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "process",
+        "name": "process",
+        "action": "App\\Http\\Controllers\\HomeController@process",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "support",
+        "name": "support",
+        "action": "App\\Http\\Controllers\\HomeController@support",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "create-conference",
+        "name": "conference-request.create",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "conference-requests",
+        "name": "conference-request.store",
+        "action": "App\\Http\\Controllers\\ConferenceRequestController@store",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conference-management/requests",
+        "name": "conference-management.requests",
+        "action": "App\\Http\\Controllers\\ConferenceManagementController@requests",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "conference-management/requests/{id}",
+        "name": "conference-management.request.show",
+        "action": "App\\Http\\Controllers\\ConferenceManagementController@showRequest",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "conference-management/requests/{id}/approve",
+        "name": "conference-management.request.approve",
+        "action": "App\\Http\\Controllers\\ConferenceManagementController@approveRequest",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "conference-management/requests/{id}/reject",
+        "name": "conference-management.request.reject",
+        "action": "App\\Http\\Controllers\\ConferenceManagementController@rejectRequest",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "submit-conference-request",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "login",
+        "name": "login",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showLoginForm",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "login",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@login",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "register",
+        "name": "register",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showRegisterForm",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "register",
+        "name": null,
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@register",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "forgot-password",
+        "name": "password.request",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showForgotPasswordForm",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "forgot-password",
+        "name": "password.email",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@sendResetLink",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reset-password/{token}",
+        "name": "password.reset",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showResetPasswordForm",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reset-password",
+        "name": "password.update",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@resetPassword",
+        "middleware": [
+            "web",
+            "guest"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "email/verify",
+        "name": "verification.notice",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showVerifyEmailForm",
+        "middleware": [
+            "web",
+            "auth"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "email/verification-notification",
+        "name": "verification.send",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@resendVerificationEmail",
+        "middleware": [
+            "web",
+            "auth",
+            "throttle:6,1"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "email/verify/{id}/{hash}",
+        "name": "verification.verify",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@verifyEmail",
+        "middleware": [
+            "web"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "logout",
+        "name": "logout",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@logout",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "profile",
+        "name": "profile.show",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@showProfile",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "profile",
+        "name": "profile.update",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@updateProfile",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "profile/password",
+        "name": "profile.password",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@updatePassword",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "profile/avatar",
+        "name": "profile.avatar",
+        "action": "App\\Http\\Controllers\\Auth\\AuthController@updateAvatar",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "dashboard",
+        "name": "dashboard",
+        "action": "App\\Http\\Controllers\\DashboardController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/dashboard",
+        "name": "author.dashboard",
+        "action": "App\\Http\\Controllers\\DashboardController@authorDashboard",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/papers",
+        "name": "author.papers.index",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/papers/create",
+        "name": "author.papers.create",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@create",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "author/papers",
+        "name": "author.papers.store",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@store",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/papers/{id}",
+        "name": "author.papers.show",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/papers/{id}/edit",
+        "name": "author.papers.edit",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@edit",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "author/papers/{id}",
+        "name": "author.papers.update",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@update",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "author/papers/{id}/withdraw",
+        "name": "author.papers.withdraw",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@withdraw",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "author/papers/{id}/download",
+        "name": "author.papers.download",
+        "action": "App\\Http\\Controllers\\Author\\PaperController@download",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:AUTHOR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/dashboard",
+        "name": "reviewer.dashboard",
+        "action": "App\\Http\\Controllers\\DashboardController@reviewerDashboard",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/reviews",
+        "name": "reviewer.reviews",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@reviews",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/reviews/create/{assignmentId}",
+        "name": "reviewer.reviews.create",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@createReview",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/reviews/{assignmentId}/store",
+        "name": "reviewer.reviews.store",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@storeReview",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/reviews/{assignmentId}/data",
+        "name": "reviewer.reviews.data",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@getReviewData",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/reviews/{id}",
+        "name": "reviewer.reviews.show",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@showReview",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/reviews/{id}/edit",
+        "name": "reviewer.reviews.edit",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@editReview",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "reviewer/reviews/{id}",
+        "name": "reviewer.reviews.update",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@updateReview",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/papers/{paperId}/download",
+        "name": "reviewer.papers.download",
+        "action": "App\\Http\\Controllers\\Reviewer\\ReviewerController@downloadPaper",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/bidding",
+        "name": "reviewer.bidding",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/conferences",
+        "name": "reviewer.conferences",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@getConferences",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/conference/{conferenceId}/papers",
+        "name": "reviewer.conference.papers",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@getConferencePapers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/bidding",
+        "name": "reviewer.bidding.submit",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@submitBidding",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/bidding/bulk",
+        "name": "reviewer.bidding.bulk",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@submitBulkBidding",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/assignments/data",
+        "name": "reviewer.assignments.data",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@getAssignments",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/assignment/{assignmentId}/respond",
+        "name": "reviewer.assignment.respond",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@respondToAssignment",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/bidding/statistics/{conferenceId?}",
+        "name": "reviewer.bidding.statistics",
+        "action": "App\\Http\\Controllers\\Reviewer\\BiddingController@getBiddingStatistics",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/coi",
+        "name": "reviewer.coi.index",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/coi/create",
+        "name": "reviewer.coi.create",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@create",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "reviewer/coi",
+        "name": "reviewer.coi.store",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@store",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/coi/{id}",
+        "name": "reviewer.coi.show",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "reviewer/coi/{id}",
+        "name": "reviewer.coi.retract",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@retract",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "reviewer/coi/search-papers",
+        "name": "reviewer.coi.search-papers",
+        "action": "App\\Http\\Controllers\\Reviewer\\COIController@searchPapers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:REVIEWER"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/dashboard",
+        "name": "chair.dashboard",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@dashboard",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/conferences",
+        "name": "chair.conferences.index",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/conferences/configure/{requestId}",
+        "name": "chair.conferences.configure",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@configure",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/conferences/configure/{requestId}",
+        "name": "chair.conferences.store",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@store",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/test-conference-debug/{requestId}",
+        "name": "chair.test.conference.debug",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/conferences/{conferenceId}",
+        "name": "chair.conferences.show",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/conferences/{conferenceId}/edit",
+        "name": "chair.conferences.edit",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@edit",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "chair/conferences/{conferenceId}",
+        "name": "chair.conferences.update",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceSetupController@update",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/my-conferences",
+        "name": "chair.my-conferences",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceController@myConferences",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/configure-conference/{id}",
+        "name": "chair.configure-conference",
+        "action": "App\\Http\\Controllers\\Chair\\ConferenceController@configureForm",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers",
+        "name": "chair.papers",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@papers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}",
+        "name": "chair.papers.show",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@showPaper",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/ajax",
+        "name": "chair.papers.ajax",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@showPaperAjax",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/assign",
+        "name": "chair.papers.assign",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@assignReviewers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/papers/{id}/assign",
+        "name": "chair.papers.assign.store",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@storeAssignment",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{paperId}/coi/{reviewerId}",
+        "name": "chair.papers.coi.check",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@checkCOI",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/suggest-reviewers",
+        "name": "chair.papers.suggest",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@suggestReviewers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/reviews",
+        "name": "chair.papers.reviews",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@reviews",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/reviews/export",
+        "name": "chair.papers.reviews.export",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@exportReviews",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/reviews/{id}",
+        "name": "chair.reviews.details",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@getReviewDetails",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/test-review/{id}",
+        "name": "chair.",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/papers/{id}/decision",
+        "name": "chair.papers.decision",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@makeDecision",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/papers/{id}/decision",
+        "name": "chair.papers.decision.store",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@storeDecision",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/reviewers",
+        "name": "chair.reviewers.index",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/coi",
+        "name": "chair.coi.index",
+        "action": "App\\Http\\Controllers\\Chair\\COIController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/coi/{id}",
+        "name": "chair.coi.show",
+        "action": "App\\Http\\Controllers\\Chair\\COIController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/coi/{id}/resolve",
+        "name": "chair.coi.resolve-form",
+        "action": "App\\Http\\Controllers\\Chair\\COIController@resolveForm",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/coi/{id}/resolve",
+        "name": "chair.coi.resolve",
+        "action": "App\\Http\\Controllers\\Chair\\COIController@resolve",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/conferences/{conferenceId}/coi-statistics",
+        "name": "chair.coi.statistics",
+        "action": "App\\Http\\Controllers\\Chair\\COIController@statistics",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/reviewers/invite",
+        "name": "chair.reviewers.invite",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/reviewers/invite/send",
+        "name": "chair.reviewers.invite.send",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@sendInvitation",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/reviewers/invitations",
+        "name": "chair.reviewers.invite.list",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@sentInvitations",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/reviewers/invite/{id}/resend",
+        "name": "chair.reviewers.invite.resend",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@resendInvitation",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/reviewers/invite/{id}/revoke",
+        "name": "chair.reviewers.invite.revoke",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerInvitationController@revokeInvitation",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/test-invite",
+        "name": "chair.test.invite",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/reviewers/{id}",
+        "name": "chair.reviewers.show",
+        "action": "App\\Http\\Controllers\\Chair\\ChairController@showReviewer",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/assignments",
+        "name": "chair.assignments.index",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/assignments/statistics/{conferenceId}",
+        "name": "chair.assignments.statistics",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@getAssignmentStatistics",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/assignments/papers/{conferenceId}",
+        "name": "chair.assignments.papers",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@getConferencePapers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/assignments/paper/{paperId}/biddings",
+        "name": "chair.assignments.paper.biddings",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@getPaperBiddings",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/assignments/manual-assign",
+        "name": "chair.assignments.manual",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@manualAssign",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/assignments/auto-assign",
+        "name": "chair.assignments.auto",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@autoAssign",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "chair/assignments/{assignmentId}",
+        "name": "chair.reviewer.assignments.remove",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@removeAssignment",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/assignments/{paperId}/assign",
+        "name": "chair.assignments.assign",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@assign",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "chair/assignments/store",
+        "name": "chair.assignments.store",
+        "action": "App\\Http\\Controllers\\Chair\\ReviewerAssignmentController@store",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:CHAIR"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/dashboard",
+        "name": "admin.dashboard",
+        "action": "App\\Http\\Controllers\\DashboardController@adminDashboard",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/join-requests",
+        "name": "admin.join-requests.index",
+        "action": "App\\Http\\Controllers\\ConferenceController@adminJoinRequests",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conferences/{id}/join-requests",
+        "name": "admin.conferences.join-requests",
+        "action": "App\\Http\\Controllers\\ConferenceController@manageJoinRequests",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/join-requests/{id}/process",
+        "name": "admin.join-requests.process",
+        "action": "App\\Http\\Controllers\\ConferenceController@processJoinRequest",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conference-requests",
+        "name": "admin.conference-requests.index",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conference-requests/{id}",
+        "name": "admin.conference-requests.show",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conference-requests/{id}/approve",
+        "name": "admin.conference-requests.approve",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@approve",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conference-requests/{id}/reject",
+        "name": "admin.conference-requests.reject",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@reject",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conference-requests/{id}/download",
+        "name": "admin.conference-requests.download",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@downloadProposal",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conference-requests/bulk-action",
+        "name": "admin.conference-requests.bulk-action",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@bulkAction",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/configured-conferences",
+        "name": "admin.configured-conferences.index",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@configuredConferences",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/configured-conferences/{id}",
+        "name": "admin.configured-conferences.show",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@showConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conference-requests/{id}/approve-conference",
+        "name": "admin.conference-requests.approve-conference",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@approveConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conference-requests/{id}/reject-conference",
+        "name": "admin.conference-requests.reject-conference",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@rejectConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/users",
+        "name": "admin.users.index",
+        "action": "App\\Http\\Controllers\\DashboardController@adminUsers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conferences",
+        "name": "admin.conferences.index",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@allConferences",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conferences/{id}",
+        "name": "admin.conferences.show",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@showConferenceDetails",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/conferences/{id}/edit",
+        "name": "admin.conferences.edit",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@editConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "admin/conferences/{id}",
+        "name": "admin.conferences.update",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@updateConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conferences/{id}/status",
+        "name": "admin.conferences.change-status",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@changeConferenceStatus",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "admin/conferences/{id}",
+        "name": "admin.conferences.delete",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@deleteConference",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/conferences/bulk-delete",
+        "name": "admin.conferences.bulk-delete",
+        "action": "App\\Http\\Controllers\\Admin\\ConferenceRequestController@bulkDelete",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/reports",
+        "name": "admin.reports.index",
+        "action": "App\\Http\\Controllers\\DashboardController@adminReports",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/users",
+        "name": "admin.users.store",
+        "action": "App\\Http\\Controllers\\DashboardController@storeUser",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/users/{id}/edit",
+        "name": "admin.users.edit",
+        "action": "App\\Http\\Controllers\\DashboardController@editUser",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "PUT"
+        ],
+        "uri": "admin/users/{id}",
+        "name": "admin.users.update",
+        "action": "App\\Http\\Controllers\\DashboardController@updateUser",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "admin/users/{id}",
+        "name": "admin.users.destroy",
+        "action": "App\\Http\\Controllers\\DashboardController@deleteUser",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/roles",
+        "name": "admin.roles.index",
+        "action": "App\\Http\\Controllers\\DashboardController@adminRoles",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/permissions",
+        "name": "admin.permissions.index",
+        "action": "App\\Http\\Controllers\\DashboardController@adminPermissions",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/settings",
+        "name": "admin.settings.index",
+        "action": "App\\Http\\Controllers\\DashboardController@adminSettings",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/logs",
+        "name": "admin.logs.index",
+        "action": "App\\Http\\Controllers\\Admin\\ActivityLogController@index",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/logs/stats",
+        "name": "admin.logs.stats",
+        "action": "App\\Http\\Controllers\\Admin\\ActivityLogController@stats",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/logs/export",
+        "name": "admin.logs.export",
+        "action": "App\\Http\\Controllers\\Admin\\ActivityLogController@export",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "DELETE"
+        ],
+        "uri": "admin/logs/clear",
+        "name": "admin.logs.clear",
+        "action": "App\\Http\\Controllers\\Admin\\ActivityLogController@clear",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/logs/{id}",
+        "name": "admin.logs.show",
+        "action": "App\\Http\\Controllers\\Admin\\ActivityLogController@show",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/users/{id}/verify-email",
+        "name": "admin.users.verify-email",
+        "action": "App\\Http\\Controllers\\DashboardController@verifyUserEmail",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/users/{id}/unverify-email",
+        "name": "admin.users.unverify-email",
+        "action": "App\\Http\\Controllers\\DashboardController@unverifyUserEmail",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/api/users/{id}",
+        "name": "admin.users.api.details",
+        "action": "App\\Http\\Controllers\\DashboardController@getUserDetails",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/api/users/bulk-delete",
+        "name": "admin.users.api.bulk-delete",
+        "action": "App\\Http\\Controllers\\DashboardController@bulkDeleteUsers",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/api/users/{id}/role",
+        "name": "admin.users.api.update-role",
+        "action": "App\\Http\\Controllers\\DashboardController@updateUserRole",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "admin/api/conferences/{id}",
+        "name": "admin.conferences.api.details",
+        "action": "App\\Http\\Controllers\\DashboardController@getConferenceDetails",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "POST"
+        ],
+        "uri": "admin/api/conferences/bulk-delete",
+        "name": "admin.conferences.api.bulk-delete",
+        "action": "App\\Http\\Controllers\\DashboardController@bulkDeleteConferences",
+        "middleware": [
+            "web",
+            "auth",
+            "verified",
+            "role:ADMIN"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "chair/debug-menu",
+        "name": "chair.debug-menu",
+        "action": "Closure",
+        "middleware": [
+            "web",
+            "auth"
+        ]
+    },
+    {
+        "methods": [
+            "GET",
+            "HEAD"
+        ],
+        "uri": "debug/test-join/{token}",
+        "name": null,
+        "action": "Closure",
+        "middleware": [
+            "web"
+        ]
+    }
+]

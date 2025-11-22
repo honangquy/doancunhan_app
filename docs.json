@@ -1,0 +1,1624 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "HUIT Conference Management API - Author Section",
+        "description": "API documentation for Author functionalities in HUIT Conference Management System",
+        "contact": {
+            "name": "HUIT Support Team",
+            "email": "support@huit.edu.vn"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Local Development Server"
+        },
+        {
+            "url": "http://192.168.1.10:8000/api",
+            "description": "Network Development Server"
+        }
+    ],
+    "paths": {
+        "/papers/statistics": {
+            "get": {
+                "tags": [
+                    "Author - Statistics"
+                ],
+                "summary": "Get paper statistics for author dashboard",
+                "description": "Returns overview statistics including total papers, papers by status, and recent submissions",
+                "operationId": "getPaperStatistics",
+                "responses": {
+                    "200": {
+                        "description": "Statistics retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "total_papers": {
+                                            "description": "Total number of papers by this author",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "by_status": {
+                                            "description": "Paper count grouped by status",
+                                            "properties": {
+                                                "SUBMITTED": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "UNDER_REVIEW": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "ACCEPTED": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "REJECTED": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "REVISION_REQUIRED": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "recent_papers": {
+                                            "description": "List of 5 most recent papers",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "paper_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "AI in Healthcare: A Comprehensive Review"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "SUBMITTED"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-15T10:30:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/my-papers": {
+            "get": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Get all papers submitted by the authenticated author",
+                "description": "Returns a list of all papers where the user is either the submitter or one of the authors",
+                "operationId": "getMyPapers",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filter by paper status",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "SUBMITTED",
+                                "UNDER_REVIEW",
+                                "ACCEPTED",
+                                "REJECTED",
+                                "REVISION_REQUIRED"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "conference_id",
+                        "in": "query",
+                        "description": "Filter by conference ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "track_id",
+                        "in": "query",
+                        "description": "Filter by track ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search by title or abstract",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort field",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "created_at",
+                            "enum": [
+                                "created_at",
+                                "updated_at",
+                                "title"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Sort direction",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Items per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 15
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Papers retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "papers": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "paper_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "title": {
+                                                        "type": "string",
+                                                        "example": "AI in Healthcare: A Comprehensive Review"
+                                                    },
+                                                    "abstract": {
+                                                        "type": "string",
+                                                        "example": "This paper explores the applications of artificial intelligence..."
+                                                    },
+                                                    "keywords": {
+                                                        "type": "string",
+                                                        "example": "AI, Healthcare, Machine Learning"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "SUBMITTED"
+                                                    },
+                                                    "track_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "track_name": {
+                                                        "type": "string",
+                                                        "example": "AI & Machine Learning"
+                                                    },
+                                                    "conference_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "conference_title": {
+                                                        "type": "string",
+                                                        "example": "International Conference on AI 2025"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-15T10:30:00.000000Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-15T10:30:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 25
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 15
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{id}": {
+            "get": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Get detailed information about a specific paper",
+                "description": "Returns complete details including authors, versions, reviews, and related information",
+                "operationId": "getPaperDetail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paper details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "paper_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "AI in Healthcare: A Comprehensive Review"
+                                        },
+                                        "abstract": {
+                                            "type": "string",
+                                            "example": "This paper explores the applications of artificial intelligence in modern healthcare systems..."
+                                        },
+                                        "keywords": {
+                                            "type": "string",
+                                            "example": "AI, Healthcare, Machine Learning, Deep Learning"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "UNDER_REVIEW"
+                                        },
+                                        "track": {
+                                            "properties": {
+                                                "track_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "AI & Machine Learning"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Track focused on artificial intelligence research"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "conference": {
+                                            "properties": {
+                                                "conference_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "International Conference on AI 2025"
+                                                },
+                                                "year": {
+                                                    "type": "integer",
+                                                    "example": 2025
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "authors": {
+                                            "description": "List of paper authors",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "user_id": {
+                                                        "type": "integer",
+                                                        "example": 5
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Dr. John Doe"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "john.doe@university.edu"
+                                                    },
+                                                    "affiliation": {
+                                                        "type": "string",
+                                                        "example": "Harvard University"
+                                                    },
+                                                    "author_order": {
+                                                        "description": "Order of author in the paper",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "versions": {
+                                            "description": "List of all paper versions",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "version_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "version_no": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "file_path": {
+                                                        "type": "string",
+                                                        "example": "papers/paper_1_v1.pdf"
+                                                    },
+                                                    "file_size": {
+                                                        "description": "File size in bytes",
+                                                        "type": "integer",
+                                                        "example": 2048576
+                                                    },
+                                                    "uploaded_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-15T10:30:00.000000Z"
+                                                    },
+                                                    "change_notes": {
+                                                        "type": "string",
+                                                        "example": "Initial submission"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "reviews": {
+                                            "description": "List of reviews (if available to author)",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "review_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "reviewer_name": {
+                                                        "type": "string",
+                                                        "example": "Anonymous Reviewer #1"
+                                                    },
+                                                    "rating": {
+                                                        "description": "Rating from 1-10",
+                                                        "type": "integer",
+                                                        "example": 8
+                                                    },
+                                                    "comments": {
+                                                        "type": "string",
+                                                        "example": "Well-written paper with good methodology. Minor revisions needed."
+                                                    },
+                                                    "recommendation": {
+                                                        "type": "string",
+                                                        "example": "ACCEPT_WITH_MINOR_REVISIONS"
+                                                    },
+                                                    "submitted_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-20T15:00:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2025-01-15T10:30:00.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2025-01-20T15:00:00.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paper not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - You don't have permission to view this paper",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You do not have permission to view this paper"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Update paper information",
+                "description": "Update paper metadata (title, abstract, keywords, authors). File updates should use version endpoints.",
+                "operationId": "updatePaper",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "maxLength": 500,
+                                        "example": "AI in Healthcare: An Updated Review"
+                                    },
+                                    "abstract": {
+                                        "type": "string",
+                                        "example": "Updated abstract with new findings..."
+                                    },
+                                    "keywords": {
+                                        "type": "string",
+                                        "example": "AI, Healthcare, Machine Learning, Deep Learning, Medical Imaging"
+                                    },
+                                    "authors": {
+                                        "description": "Updated list of authors",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Dr. John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@university.edu"
+                                                },
+                                                "affiliation": {
+                                                    "type": "string",
+                                                    "example": "Harvard University"
+                                                },
+                                                "order": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Paper updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper updated successfully"
+                                        },
+                                        "paper": {
+                                            "properties": {
+                                                "paper_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "AI in Healthcare: An Updated Review"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - Cannot update paper in current status or not your paper",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You cannot update this paper in its current status"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paper not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Delete a paper",
+                "description": "Withdraw/delete a submitted paper (only if not yet reviewed)",
+                "operationId": "deletePaper",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paper deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper withdrawn successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - Cannot delete paper in current status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You cannot withdraw a paper that is under review"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paper not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers": {
+            "post": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Submit a new paper",
+                "description": "Create and submit a new paper to a conference track",
+                "operationId": "submitPaper",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "abstract",
+                                    "track_id",
+                                    "paper_file",
+                                    "authors"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "maxLength": 500,
+                                        "example": "AI in Healthcare: A Comprehensive Review"
+                                    },
+                                    "abstract": {
+                                        "type": "string",
+                                        "example": "This paper explores the applications of artificial intelligence in modern healthcare systems..."
+                                    },
+                                    "keywords": {
+                                        "type": "string",
+                                        "example": "AI, Healthcare, Machine Learning, Deep Learning"
+                                    },
+                                    "track_id": {
+                                        "description": "ID of the conference track",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "paper_file": {
+                                        "description": "PDF file of the paper (max 10MB)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "authors": {
+                                        "description": "JSON array of authors with name, email, affiliation and order",
+                                        "type": "string"
+                                    },
+                                    "supplementary_files": {
+                                        "description": "Optional supplementary files (datasets, code, etc.)",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Paper submitted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper submitted successfully"
+                                        },
+                                        "paper_id": {
+                                            "type": "integer",
+                                            "example": 123
+                                        },
+                                        "paper": {
+                                            "properties": {
+                                                "paper_id": {
+                                                    "type": "integer",
+                                                    "example": 123
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "AI in Healthcare: A Comprehensive Review"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "example": "SUBMITTED"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-15T10:30:00.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "title": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The title field is required."
+                                                    }
+                                                },
+                                                "paper_file": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The paper file must be a PDF."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{id}/download": {
+            "get": {
+                "tags": [
+                    "Author - Papers"
+                ],
+                "summary": "Download paper PDF",
+                "description": "Download the latest version of the paper PDF file",
+                "operationId": "downloadPaper",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "PDF file download",
+                        "content": {
+                            "application/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paper or file not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper file not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - No permission to download",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You do not have permission to download this paper"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{paper_id}/versions": {
+            "get": {
+                "tags": [
+                    "Author - Paper Versions"
+                ],
+                "summary": "Get all versions of a paper",
+                "description": "Returns list of all versions/revisions of a specific paper",
+                "operationId": "getPaperVersions",
+                "parameters": [
+                    {
+                        "name": "paper_id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Versions retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "versions": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "version_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "version_no": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "file_path": {
+                                                        "type": "string",
+                                                        "example": "papers/paper_1_v1.pdf"
+                                                    },
+                                                    "file_name": {
+                                                        "type": "string",
+                                                        "example": "AI_Healthcare_v1.pdf"
+                                                    },
+                                                    "file_size": {
+                                                        "description": "File size in bytes",
+                                                        "type": "integer",
+                                                        "example": 2048576
+                                                    },
+                                                    "change_notes": {
+                                                        "type": "string",
+                                                        "example": "Initial submission"
+                                                    },
+                                                    "uploaded_by": {
+                                                        "description": "User ID who uploaded this version",
+                                                        "type": "integer",
+                                                        "example": 5
+                                                    },
+                                                    "uploaded_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-15T10:30:00.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "total_versions": {
+                                            "type": "integer",
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Paper not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Paper not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Author - Paper Versions"
+                ],
+                "summary": "Upload a new version of the paper",
+                "description": "Submit a revised version of an existing paper",
+                "operationId": "uploadPaperVersion",
+                "parameters": [
+                    {
+                        "name": "paper_id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "paper_file"
+                                ],
+                                "properties": {
+                                    "paper_file": {
+                                        "description": "PDF file of the new version (max 10MB)",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "change_notes": {
+                                        "description": "Description of changes in this version",
+                                        "type": "string",
+                                        "example": "Fixed typos, added new experimental results, addressed reviewer comments"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "New version uploaded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "New version uploaded successfully"
+                                        },
+                                        "version": {
+                                            "properties": {
+                                                "version_id": {
+                                                    "type": "integer",
+                                                    "example": 4
+                                                },
+                                                "version_no": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "file_path": {
+                                                    "type": "string",
+                                                    "example": "papers/paper_1_v2.pdf"
+                                                },
+                                                "uploaded_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - Cannot upload new version in current status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Cannot upload new version while paper is under review"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The paper file must be a PDF."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{paper_id}/versions/{version_no}": {
+            "get": {
+                "tags": [
+                    "Author - Paper Versions"
+                ],
+                "summary": "Get specific version details",
+                "description": "Returns detailed information about a specific version of the paper",
+                "operationId": "getPaperVersionDetail",
+                "parameters": [
+                    {
+                        "name": "paper_id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "version_no",
+                        "in": "path",
+                        "description": "Version number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Version details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "version_id": {
+                                            "type": "integer",
+                                            "example": 4
+                                        },
+                                        "version_no": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "paper_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "file_path": {
+                                            "type": "string",
+                                            "example": "papers/paper_1_v2.pdf"
+                                        },
+                                        "file_name": {
+                                            "type": "string",
+                                            "example": "AI_Healthcare_v2.pdf"
+                                        },
+                                        "file_size": {
+                                            "type": "integer",
+                                            "example": 2150000
+                                        },
+                                        "change_notes": {
+                                            "type": "string",
+                                            "example": "Addressed all reviewer comments"
+                                        },
+                                        "uploaded_by": {
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "uploaded_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "uploader": {
+                                            "properties": {
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "full_name": {
+                                                    "type": "string",
+                                                    "example": "Dr. John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "john@university.edu"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Version not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Version not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{paper_id}/versions/{version_no}/download": {
+            "get": {
+                "tags": [
+                    "Author - Paper Versions"
+                ],
+                "summary": "Download a specific version of the paper",
+                "description": "Download PDF file of a specific version",
+                "operationId": "downloadPaperVersion",
+                "parameters": [
+                    {
+                        "name": "paper_id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "version_no",
+                        "in": "path",
+                        "description": "Version number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "PDF file download",
+                        "content": {
+                            "application/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Version or file not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Version file not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/papers/{paper_id}/versions/compare": {
+            "get": {
+                "tags": [
+                    "Author - Paper Versions"
+                ],
+                "summary": "Compare two versions of a paper",
+                "description": "Get comparison information between two versions (metadata changes)",
+                "operationId": "comparePaperVersions",
+                "parameters": [
+                    {
+                        "name": "paper_id",
+                        "in": "path",
+                        "description": "Paper ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "from_version",
+                        "in": "query",
+                        "description": "Starting version number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "to_version",
+                        "in": "query",
+                        "description": "Ending version number",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comparison data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "from_version": {
+                                            "properties": {
+                                                "version_no": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "file_size": {
+                                                    "type": "integer",
+                                                    "example": 2048576
+                                                },
+                                                "uploaded_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "to_version": {
+                                            "properties": {
+                                                "version_no": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "file_size": {
+                                                    "type": "integer",
+                                                    "example": 2150000
+                                                },
+                                                "uploaded_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "file_size_diff": {
+                                            "description": "Difference in bytes",
+                                            "type": "integer",
+                                            "example": 101424
+                                        },
+                                        "time_diff": {
+                                            "description": "Time between versions",
+                                            "type": "string",
+                                            "example": "5 days"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "One or both versions not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Version not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter JWT token obtained from login endpoint",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Author - Papers",
+            "description": "API endpoints for paper management by authors"
+        },
+        {
+            "name": "Author - Statistics",
+            "description": "API endpoints for author statistics and dashboard"
+        },
+        {
+            "name": "Author - Paper Versions",
+            "description": "API endpoints for managing paper versions"
+        }
+    ]
+}
